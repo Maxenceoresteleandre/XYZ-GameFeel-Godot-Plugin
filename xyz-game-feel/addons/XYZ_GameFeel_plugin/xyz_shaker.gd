@@ -7,7 +7,8 @@ class_name XYZ_Shaker
 ## Class from the XYZ GameFeel Plugin.
 
 
-## Emitted when object has finished shaking and can be called once more.
+## Emitted when object has finished shaking and can be called for a clean new shake.
+@warning_ignore("unused_signal")
 signal shake_finished
 
 ## Reset values if set_to_zero_after_shake is true.
@@ -100,6 +101,7 @@ func _new_shake() -> void:
 		TYPE_FLOAT:
 			offset_val = _get_random_float_offset(amplitude)
 		TYPE_COLOR:
+			@warning_ignore("unsafe_call_argument")
 			offset_val = _get_random_color_offset(amplitude, initial_value.a)
 		TYPE_VECTOR2:
 			offset_val = _get_random_vector2_offset(amplitude)
