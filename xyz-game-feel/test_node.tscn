@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://co708edr3pyeq"]
+
+[ext_resource type="Script" path="res://addons/XYZ_GameFeel_plugin/shaker.gd" id="1_sjtej"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_sjtej")
