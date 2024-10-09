@@ -16,7 +16,7 @@ const ZERO_VALUES : Dictionary = {
 	TYPE_FLOAT : 0.0,
 	TYPE_COLOR : Color.WHITE,
 	TYPE_VECTOR2 : Vector2.ZERO,
-	TYPE_VECTOR3 : Vector3.ZERO
+	TYPE_VECTOR3 : Vector3.ZERO,
 }
 
 ## The object you want to shake.
@@ -31,8 +31,6 @@ const ZERO_VALUES : Dictionary = {
 ## The ease type used by the tween.
 @export var shake_ease := Tween.EASE_IN_OUT
 
-@onready var shake_timer : Timer = Timer.new()
-
 var initial_value : Variant
 var reset_value : Variant
 var amplitude := 0
@@ -41,9 +39,18 @@ var shaking := false
 var frequency := 0.0
 var property_type : int
 
-## Shake the object's property for duration_n, with jumps between -amplitude_n and amplitude_n,
-## at frequency_n. If another shake is happening, priority_n is used to choose whether or not
-## to override the previous shake with the new one.
+@onready var shake_timer : Timer = Timer.new()
+
+
+
+func _ready() -> void:
+	shake_timer.autostart = false
+	shake_timer.one_shot = true
+
+
+## Shake the object's property for duration_n, with jumps between -amplitude_n and 
+## amplitude_n, at frequency_n. If another shake is happening, priority_n is used 
+## to choose whether or not to override the previous shake with the new one.
 func shake(duration_n := 0.2, frequency_n := 15, amplitude_n := 30, priority_n := 0) -> void:
 	if shaking and priority_n < priority:
 		return
@@ -67,12 +74,11 @@ func shake(duration_n := 0.2, frequency_n := 15, amplitude_n := 30, priority_n :
 	shaking = false
 	_reset()
 
-func _ready() -> void:
-	shake_timer.autostart = false
-	shake_timer.one_shot = true
+
 
 func _get_random_float_offset(f_amplitude : float) -> float:
 	return randf_range(-f_amplitude, f_amplitude)
+
 
 func _get_random_color_offset(f_amplitude : float, transparency : float) -> Color:
 	return Color(
@@ -82,11 +88,13 @@ func _get_random_color_offset(f_amplitude : float, transparency : float) -> Colo
 		transparency
 	)
 
+
 func _get_random_vector2_offset(f_amplitude : float) -> Vector2:
 	return Vector2(
 		randf_range(-f_amplitude, f_amplitude),
 		randf_range(-f_amplitude, f_amplitude)
 	)
+
 
 func _get_random_vector3_offset(f_amplitude : float) -> Vector3:
 	return Vector3(
@@ -94,6 +102,7 @@ func _get_random_vector3_offset(f_amplitude : float) -> Vector3:
 		randf_range(-f_amplitude, f_amplitude),
 		randf_range(-f_amplitude, f_amplitude)
 	)
+
 
 func _new_shake() -> void:
 	var offset_val : Variant
@@ -111,10 +120,12 @@ func _new_shake() -> void:
 	if shaking:
 		_new_shake()
 
+
 func _tween_shake(offset_val : Variant) -> Tween:
 	var tween : Tween = create_tween().set_ease(shake_ease).set_trans(shake_trans)
 	tween.tween_property(object, property, initial_value + offset_val, frequency)
 	return tween
+
 
 func _reset() -> void:
 	var tween : Tween = create_tween().set_ease(shake_ease).set_trans(shake_trans)
