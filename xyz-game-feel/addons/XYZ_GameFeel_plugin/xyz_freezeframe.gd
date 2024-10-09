@@ -1,6 +1,7 @@
 extends Node
 class_name XYZ_FreezeFrame
 
+
 signal freeze_frame_ended
 
 
@@ -25,6 +26,7 @@ func freeze_frame(duration : float = 0.015) -> void:
 	Engine.time_scale = default_time_scale
 	emit_signal("freeze_frame_ended")
 
+
 func slow_motion(time_scale : float, duration : float) -> void:
 	if in_freeze_frame:
 		await self.freeze_frame_ended
@@ -32,6 +34,7 @@ func slow_motion(time_scale : float, duration : float) -> void:
 	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.time_scale = default_time_scale
 
-func set_time_scale(time_scale : float) -> void:
+
+func set_default_time_scale(time_scale : float) -> void:
 	Engine.time_scale = time_scale
 	default_time_scale = time_scale

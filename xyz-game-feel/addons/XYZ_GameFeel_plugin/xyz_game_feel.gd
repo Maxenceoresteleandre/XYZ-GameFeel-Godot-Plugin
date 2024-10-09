@@ -5,6 +5,7 @@ extends EditorPlugin
 ## Made by Maxou for the Godot Game Engine.
 ## Use, expand and credit as you please. Godot's great. Make great things with it.
 
+
 func _enter_tree() -> void:
 	# Initialization of the plugin goes here.
 	pass
