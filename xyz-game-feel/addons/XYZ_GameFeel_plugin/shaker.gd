@@ -11,6 +11,10 @@ const ZERO_VALUES : Dictionary = {
 	ShakableTypes.Vector2 : Vector2.ZERO,
 	ShakableTypes.Vector3 : Vector3.ZERO
 }
+# OR:
+# float, vector2, vector3, color
+# and check property type
+# and if property is of correct type then shaaaaake it ! 
 
 
 ## The object you want to shake
@@ -42,7 +46,9 @@ func shake(duration_n := 0.2, frequency_n := 15, amplitude_n := 30, priority_n :
 	amplitude = amplitude_n
 	shaking = true
 	if set_to_zero_after_shake:
-		initial_value = Vector2.ZERO
+		initial_value = ZERO_VALUES[property_type]
+		if typeof(object.get(property)):
+			pass
 	else:
 		initial_value = object.get(property)
 	frequency = 1/float(frequency_n)
