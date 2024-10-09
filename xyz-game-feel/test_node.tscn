@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://co708edr3pyeq"]
 
-[ext_resource type="Script" path="res://addons/XYZ_GameFeel_plugin/xyz_shaker.gd" id="1_sjtej"]
-[ext_resource type="Script" path="res://addons/XYZ_GameFeel_plugin/xyz_freezeframe.gd" id="2_cf8jd"]
+[ext_resource type="Script" path="res://addons/XYZ_GameFeel_plugin/scripts/xyz_shaker.gd" id="1_sjtej"]
+[ext_resource type="Script" path="res://addons/XYZ_GameFeel_plugin/scripts/xyz_freezeframe.gd" id="2_cf8jd"]
 
 [node name="Node2D" type="Node2D"]
 
