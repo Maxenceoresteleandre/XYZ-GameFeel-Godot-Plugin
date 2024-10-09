@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://co708edr3pyeq"]
+[gd_scene load_steps=3 format=3 uid="uid://co708edr3pyeq"]
 
 [ext_resource type="Script" path="res://addons/XYZ_GameFeel_plugin/xyz_shaker.gd" id="1_sjtej"]
+[ext_resource type="Script" path="res://addons/XYZ_GameFeel_plugin/xyz_freezeframe.gd" id="2_cf8jd"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("object")]
+[node name="Node2D" type="Node2D"]
+
+[node name="Shaker" type="Node2D" parent="." node_paths=PackedStringArray("object")]
 script = ExtResource("1_sjtej")
 object = NodePath(".")
+
+[node name="FreezeFrame" type="Node2D" parent="."]
+script = ExtResource("2_cf8jd")
